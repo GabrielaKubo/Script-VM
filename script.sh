@@ -1,6 +1,13 @@
 #!/bin/bash
-sudo passwd ubuntu
-sudo apt update && sudo apt upgrade -y
+echo "Você gostaria de alterar a senha? (s/n)"
+read inst
+if [ \"$inst\" == \"s\" ];
+then
+	sudo passwd ubuntu
+else
+	echo "Prosseguindo..."
+fi
+	sudo apt update && sudo apt upgrade -y
 
 echo "Você gostaria de instalar a interface gráfica? (s/n)"
 read inst
@@ -8,7 +15,7 @@ if [ \"$inst\" == \"s\" ];
 then
 		sudo apt-get install xrdp lxde-core lxde tigervnc-standalone-server -y
 else
-		echo "Prosseguindo."
+		echo "Prosseguindo..."
 fi
 
 #saber versão java
@@ -31,6 +38,8 @@ else
 	if [ \"$inst\" == \"s\" ];
 	then
 		sudo apt install default-jre -y
+	else
+		echo "Prosseguindo..."
 	fi
 fi
 
@@ -40,7 +49,7 @@ if [ $? -eq 0 ];
 then
 	echo "Docker já está instalado"
 else
-	echo "Gostaria de instalar o Docker e Banco TotomSystem? (s/n)"
+	echo "Gostaria de instalar o Docker e Banco Gerencie! ? (s/n)"
 	read inst
 	if [ \"$inst\" == \"s\" ];
 	then
@@ -62,6 +71,7 @@ fi
 #Criando jar executável
 git clone https://github.com/Gerencie-Monitoramento-de-totens/JAR.git
 cd JAR/gerencie/target
-java -jar gerencie-1.0-SNAPSHOT-jar-with-dependencies.jar
+java -jar gerencie-1.0-SNAPSHOT.jar
+
 
 dir
