@@ -69,9 +69,45 @@ else
 fi
 
 #Criando jar executável
-git clone https://github.com/Gerencie-Monitoramento-de-totens/JAR.git
-cd JAR/gerencie/target
-java -jar gerencie-1.0-SNAPSHOT.jar
+#cd Desktop
+#git clone https://github.com/Gerencie-Monitoramento-de-totens/JAR.git
+#cd JAR/gerencie/target
+#java -jar gerencie-1.0-SNAPSHOT.jar
 
 
-dir
+if [ $? -eq 0 ];
+then
+	echo "Arquivo .jar já adquirido!"
+	echo "Gostaria de remover o arquivo .jar? (s/n)"
+	read inst
+	if [ \"$inst\" == \"s\" ];
+	then
+		echo "Removendo arquivo"
+		cd Desktop
+		sudo rm -r "JAR"
+		echo "Gostaria de instalar arquivo .jar Gerencie! ? (s/n)"
+		read inst
+		if [ \"$inst\" == \"s\" ];
+		then
+			cd Desktop
+			git clone https://github.com/Gerencie-Monitoramento-de-totens/JAR.git
+			echo "Arquivo clonado com sucesso!"
+			echo "Executando arquivo"
+			cd JAR/gerencie/target
+			java -jar gerencie-1.0-SNAPSHOT.jar
+	fi
+	fi
+else
+	echo "Arquivo .jar não instalado!"
+	echo "Gostaria de instalar arquivo .jar Gerencie! ? (s/n)"
+	read inst
+	if [ \"$inst\" == \"s\" ];
+	then
+		cd Desktop
+		git clone https://github.com/Gerencie-Monitoramento-de-totens/JAR.git
+		echo "Arquivo clonado com sucesso!"
+		echo "Executando arquivo"
+		cd JAR/gerencie/target
+		java -jar gerencie-1.0-SNAPSHOT.jar
+	fi
+fi
