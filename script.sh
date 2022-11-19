@@ -44,29 +44,6 @@ else
 fi
 
 #Criando docker
-docker --version
-if [ $? -eq 0 ];
-then
-	echo "Docker já está instalado"
-else
-	echo "Gostaria de instalar o Docker e Banco Gerencie! ? (s/n)"
-	read inst
-	if [ \"$inst\" == \"s\" ];
-	then
-		sudo apt install docker.io -y
-
-		echo "Iniciando Docker"
-		echo "Caminho: "
-		pwd
-		sudo systemctl start docker
-		sudo systemctl enable docker
-		sudo docker pull mysql:5.7
-		sudo docker images
-		sudo docker run -d -p 3306:3306 --name ContainerBD -e "MYSQL_DATABASE=gerencie" -e "MYSQL_ROOT_PASSWORD=urubu100" mysql:5.7
-
-		echo Banco de dados Criado com Sucesso!
-	fi
-fi
 
 #Criando jar executável
 #cd Desktop
@@ -96,7 +73,7 @@ else
 	if [ \"$inst\" == \"s\" ];
 	then
 		echo "Removendo arquivo"
-		cd Desktop
+		cd /home/ubuntu/Desktop
 		sudo rm -r "JAR"
 		echo "Gostaria de reinstalar arquivo .jar Gerencie! ? (s/n)"
 		read inst
