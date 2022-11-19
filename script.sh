@@ -84,7 +84,7 @@ else
 			echo "Arquivo clonado com sucesso!"
 			echo "Executando arquivo"
 			cd JAR/gerencie/target
-			java -jar gerencie-1.0-SNAPSHOT.jar
+			java -jar gerencie-1.0-SNAPSHOT-jar-with-dependencies.jar
 		fi
 	fi
 fi
