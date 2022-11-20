@@ -75,7 +75,8 @@ else
 		echo "Removendo arquivo"
 		cd /home/ubuntu/Desktop
 		sudo rm -r "JAR"
-		echo "Gostaria de reinstalar arquivo .jar Gerencie! ? (s/n)"
+	fi
+	echo "Gostaria de reinstalar arquivo .jar Gerencie! ? (s/n)"
 		read inst
 		if [ \"$inst\" == \"s\" ];
 		then
@@ -86,5 +87,4 @@ else
 			cd JAR/gerencie/target
 			java -jar gerencie-1.0-SNAPSHOT-jar-with-dependencies.jar
 		fi
-	fi
 fi
