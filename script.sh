@@ -49,6 +49,7 @@ sudo docker run -d -p 3306:3306 --name ContainerBD -e "MYSQL_DATABASE=gerencie" 
 
 
 #Criando jar executável
+java -version
 if [ $? -eq 0 ];
 then
 echo "java instalado"
