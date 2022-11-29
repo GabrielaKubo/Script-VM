@@ -43,15 +43,22 @@ else
 	fi
 fi
 
+
 #Criando docker
+sudo apt install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+# sudo docker –-version
+sudo docker ps
+# Pull ele está baixando o MYSQL.
+sudo docker pull mysql:5.7
+sudo docker images
+# Ele cria as configurações do mysql..
+# Caso não consiga executar o banco pelo java descomentar linha abaixo.
+sudo docker run -d -p 3306:3306 --name ContainerBD -e "MYSQL_DATABASE=root" -e "MYSQL_ROOT_PASSWORD=urubu100" mysql:5.7
+
 
 #Criando jar executável
-#cd Desktop
-#git clone https://github.com/Gerencie-Monitoramento-de-totens/JAR.git
-#cd JAR/gerencie/target
-#java -jar gerencie-1.0-SNAPSHOT.jar
-
-
 if [ $? -eq 0 ];
 then
 	echo "Arquivo .jar não instalado!"
