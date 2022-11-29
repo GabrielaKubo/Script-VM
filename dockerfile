@@ -1,5 +1,5 @@
-FROM openjdk:8
-COPY . /usr/src/myapp
+FROM openjdk:11-jre
+COPY . /Script-VM/SCRIPT-CLI/gerencie/target
 WORKDIR /usr/src/myapp
-RUN javac Main.java
-CMD ["java", "Main"]
+RUN chmod 777 . /Script-VM/SCRIPT-CLI/gerencie/target
+CMD ["java", "-jar", "gerencie-1.0-SNAPSHOT-jar-with-dependencies.jar"]

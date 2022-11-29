@@ -18,16 +18,6 @@ else
 		echo "Prosseguindo..."
 fi
 
-#saber versão java
-# VERSION=”$(java -version 2>&1 | grep version | cut -d’”’ -f2)”
-# if [ “${VERSION}” ];
-# then
-#   echo “Cliente possui java instalado: ${VERSION}”
-# else
-#   echo “Cliente não possui java instalado”
-# fi
-
-#instalação java default
 java --version
 if [ $? -eq 0 ];
 then
@@ -61,21 +51,28 @@ sudo docker run -d -p 3306:3306 --name ContainerBD -e "MYSQL_DATABASE=gerencie" 
 #Criando jar executável
 if [ $? -eq 0 ];
 then
-	echo "Arquivo .jar não instalado!"
-	echo "Gostaria de instalar arquivo .jar Gerencie! ? (s/n)"
-	read inst
-	if [ \"$inst\" == \"s\" ];
-	then
-		cd /home/ubuntu/Desktop
-		git clone https://github.com/Gerencie-Monitoramento-de-totens/JAR.git
-		echo "Arquivo clonado com sucesso!"
-		echo "Executando arquivo"
-		cd JAR/gerencie/target
-		java -jar gerencie-1.0-SNAPSHOT-jar-with-dependencies.jar
-	fi
+echo "java instalado"
+sudo apt install default-jre -y
+    sleep 3
+git clone https://github.com/GabrielaKubo/SCRIPT-GUI.git
+git clone https://github.com/GabrielaKubo/SCRIPT-CLI.git
+
+sudo docker build -t dockerfile .
+sudo docker run -d -t --rm --name containerjava dockerfile
+
+
 else
-		echo "Arquivo .jar já adquirido!"
-		echo "Executando arquivo"
-		cd JAR/gerencie/target
-		java -jar gerencie-1.0-SNAPSHOT-jar-with-dependencies.jar
+echo "java nao instalado"
+echo "gostaria de instalar o java em sua Máquina Virtual? (s/n)"
+read inst
+if [ \"$inst\" == \"s\" ];
+then
+sudo apt install default-jre -y
+git clone https://github.com/GabrielaKubo/SCRIPT-GUI.git
+git clone https://github.com/GabrielaKubo/SCRIPT-CLI.git
+
+sudo docker build -t dockerfile .
+sudo docker run -d -t --name containerjava dockerfile
+
+fi
 fi
